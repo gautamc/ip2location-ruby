@@ -1,0 +1,55 @@
+IP2Location Ruby 4.0.1
+======================
+
+This is IP2Location Ruby library that enables the user to find the country, region (state), city, latitude, longitude, zip code, time zone, ISP, domain name, connection type, area code, weather and mobile network by IP address or hostname originates from.  It contains a demo IP2Location IP-COUNTRY BIN database which consists of real data for IP address range 0.0.0.0 to 99.255.255.255.  This database contains IP address blocks as key and countries as values.  The paid version of IP2Location database covers all IP address range. IP2Location is complete, fast and accurate compares to using reverse DNS lookups. Developers can download other sample databases to evaluate other features such as region (state), city, latitude, longitude, zip code, time zone, ISP, domain name, connection type, area code, weather and mobile network using the same Ruby library.
+
+For more details, please visit:
+
+http://www.ip2location.com/ruby.aspx
+http://www.ip2location.com/developers.aspx
+
+This Ruby API supports IP2Location IPv6 through C Library.
+
+Requirements
+------------
+1) IP2Location C API library ( download from http://www.ip2location.com/c.aspx )
+2) Ruby installed
+3) GNU make or any compatible make utility
+
+Installation (Windows/Linux)
+----------------------------
+1) compile C library to produce shared object binary
+1) ruby extconf.rb --with-libIP2Location-lib=<path to C API lib> --with-includeIP2Location-include=<path to C API lib> 
+	 example: ruby extconf.rb --with-libIP2Location-lib=..\C-IP2Location-4.0.2\libIP2Location --with-includeIP2Location-include=..\C-IP2Location-4.0.2\libIP2Location 
+2) make
+
+
+Installation (Mac OS X)
+-----------------------
+To install the ruby API under Mac OSX, you will need to compile IP2Location C library into universal binary (.dylib) without using configure script.
+
+1) cd C-IP2Location-4.0.2/libIP2Location
+2) export CFLAGS=-I/usr/include/malloc
+3) gcc -arch i386 -arch x86_64 -arch ppc -c IP2Location.c iMath/imath.c
+4) gcc -arch i386 -arch x86_64 -arch ppc -dynamiclib -current_version 1.0 -o /usr/local/lib/libIP2Location.dylib IP2Location.o imath.o
+5) cd <path>/Ruby-IP2Location-4.0.1
+6) ruby extconf.rb
+7) make
+
+* Remove parameter "-arch ppc" if your computer do not support this architecture
+
+Testing
+-------
+Unix/Linux/Mac platform : ruby sample_bsd.rb 
+Windows platform        : ruby sample_win.rb 
+
+
+Download More Sample Databases
+------------------------------
+wget http://www.ip2location.com/download/samples-db20.zip
+unzip samples-db20.zip
+
+
+For support, please email sales@ip2location.com.
+
+http://www.ip2location.com

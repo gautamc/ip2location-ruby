@@ -1,0 +1,43 @@
+4.0.0	2010-08-12
+	* Support IP2Location DB19 - DB20
+  * New function get_mcc()      
+  * New function get_mnc()      
+  * New function get_mobilebrand()      
+
+3.0.0	2008-08-12
+	* Initial release
+	* Support IP2Location IPv6
+	* Support IP2Location DB1 - DB18
+  * New function open()             
+  * New function close()            
+  * New function get_country_short()
+  * New function get_country_long() 
+  * New function get_region()       
+  * New function get_city()         
+  * New function get_isp()          
+  * New function get_latitude()     
+  * New function get_longitude()    
+  * New function get_domain()       
+  * New function get_zipcode()      
+  * New function get_iddcode()      
+  * New function get_areacode()      
+  * New function get_weatherstationcode()      
+  * New function get_weatherstationname()      
+  * New function get_all()          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
