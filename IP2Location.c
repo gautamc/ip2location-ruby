@@ -64,8 +64,16 @@ static VALUE rb_cIP2LocRec_new (VALUE klass, IP2LocationRecord* pRec)
 
 static void rb_IP2Location_open(VALUE class, VALUE dbFile)
 {
-	IP2Location *IP2LocationObj = IP2Location_open(STR2CSTR(dbFile));
-  VALUE ipObj = Data_Wrap_Struct(0, 0, 0, IP2LocationObj);
+        IP2Location *IP2LocationObj;
+	VALUE ipObj;
+	VALUE dbFile_for_cstr_cast = rb_str_dup(dbFile);
+	
+	rb_str_modify(dbFile_for_cstr_cast);
+	
+        //IP2LocationObj = IP2Location_open(STR2CSTR(dbFile));
+	IP2LocationObj = IP2Location_open(StringValuePtr(dbFile_for_cstr_cast));
+	ipObj = Data_Wrap_Struct(0, 0, 0, IP2LocationObj);
+
 	rb_iv_set(class, "@ip2loc", ipObj);
 }
 
@@ -74,10 +82,14 @@ static VALUE rb_IP2Location_get_country_short(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_country_short(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_country_long(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_country_short(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -86,10 +98,14 @@ static VALUE rb_IP2Location_get_country_long(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+		
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_country_long(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_country_long(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_country_long(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -98,10 +114,14 @@ static VALUE rb_IP2Location_get_region(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+	
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_region(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_region(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_region(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -110,10 +130,14 @@ static VALUE rb_IP2Location_get_city(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_city(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_city(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_city(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -122,10 +146,14 @@ static VALUE rb_IP2Location_get_isp(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_isp(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_isp(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_isp(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -134,10 +162,14 @@ static VALUE rb_IP2Location_get_latitude(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+	
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_latitude(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_latitude(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_latitude(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -146,10 +178,14 @@ static VALUE rb_IP2Location_get_longitude(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+	
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_longitude(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_longitude(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_longitude(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -158,10 +194,14 @@ static VALUE rb_IP2Location_get_domain(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+	
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_domain(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_domain(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_domain(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -170,10 +210,14 @@ static VALUE rb_IP2Location_get_zipcode(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_zipcode(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_zipcode(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_zipcode(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -182,10 +226,14 @@ static VALUE rb_IP2Location_get_timezone(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_timezone(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_timezone(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_timezone(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -194,10 +242,14 @@ static VALUE rb_IP2Location_get_netspeed(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+
+	rb_str_modify(ipaddr_for_cstr_cast);
+	
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_netspeed(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_netspeed(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_netspeed(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -206,10 +258,14 @@ static VALUE rb_IP2Location_get_iddcode(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+
+	rb_str_modify(ipaddr_for_cstr_cast);
+
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_iddcode(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_iddcode(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_iddcode(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -218,10 +274,14 @@ static VALUE rb_IP2Location_get_areacode(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+
+	rb_str_modify(ipaddr_for_cstr_cast);
+	
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_areacode(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_areacode(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_areacode(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -230,10 +290,14 @@ static VALUE rb_IP2Location_get_weatherstationcode(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+	
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_weatherstationcode(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_weatherstationcode(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_weatherstationcode(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -242,10 +306,14 @@ static VALUE rb_IP2Location_get_weatherstationname(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+
+	rb_str_modify(ipaddr_for_cstr_cast);
+	
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_weatherstationname(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_weatherstationname(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_weatherstationname(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -254,10 +322,14 @@ static VALUE rb_IP2Location_get_mcc(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+	
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_mcc(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_mcc(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_mcc(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -266,10 +338,14 @@ static VALUE rb_IP2Location_get_mnc(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+
+	rb_str_modify(ipaddr_for_cstr_cast);
+	
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_mnc(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_mnc(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_mnc(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -278,10 +354,14 @@ static VALUE rb_IP2Location_get_mobilebrand(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+	
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_mobilebrand(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_mobilebrand(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_mobilebrand(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
@@ -290,10 +370,14 @@ static VALUE rb_IP2Location_get_all(VALUE class, VALUE ipaddr)
 	IP2Location* IP2LocationObj = NULL;
 	IP2LocationRecord* pRec = NULL;
 	VALUE rRec;
-
 	VALUE ipObj = rb_iv_get(class, "@ip2loc");
+	VALUE ipaddr_for_cstr_cast = rb_str_dup(ipaddr);
+	
+	rb_str_modify(ipaddr_for_cstr_cast);
+	
 	Data_Get_Struct(ipObj, IP2Location,  IP2LocationObj);
-	pRec = IP2Location_get_all(IP2LocationObj, STR2CSTR(ipaddr));
+	//pRec = IP2Location_get_all(IP2LocationObj, STR2CSTR(ipaddr));
+	pRec = IP2Location_get_all(IP2LocationObj, StringValuePtr(ipaddr_for_cstr_cast));
 	return rb_cIP2LocRec_new(cIP2LocRec, pRec);
 }
 
