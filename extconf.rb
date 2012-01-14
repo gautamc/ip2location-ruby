@@ -17,7 +17,7 @@
 require 'mkmf'
 dir_config('libIP2Location')
 dir_config('includeIP2Location')
-print "Creating Makefile... [", PLATFORM, "]\n" 
+#print "Creating Makefile... [", PLATFORM, "]\n" 
 if have_library('IP2Location', 'IP2Location_open') then
     create_makefile("IP2Location")
 else
